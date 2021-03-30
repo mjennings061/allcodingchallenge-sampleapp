@@ -29,6 +29,10 @@ def per_employee(id):
     return json.dumps(stats_helper.per_employee(id))
 
 
+@app.route('/median_survey')
+def median_survey():
+    return json.dumps(stats_helper.median_survey())
+
 print("### Application started...")
 
 
