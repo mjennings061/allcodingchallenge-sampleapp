@@ -7,21 +7,17 @@ class StatsHelper():
         self.database = Database()
         print("Stats Helping initialising!")
 
-
     def select_all_employee(self):
         result = self.database.fetch_all("SELECT * FROM employeedata")
         return result
-
 
     def select_all(self):
         result = self.database.fetch_all("SELECT * FROM dayroutine limit 0,7")
         return result
 
-
     def join_all(self):
         result = self.database.fetch_all("SELECT * FROM dayroutine as a left join employeedata b on a.employee_id = b.employee_id")
         return result
-
 
     # return each employee with their joined dayroutines in order
     def per_employee(self, employee_id):
