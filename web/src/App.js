@@ -3,7 +3,7 @@ import './App.css';
 import { BasicTable } from './components/table'
 import { ButtonAppBar } from "./components//navbar"
 import { Example } from "./components//charts"
-import { Button, ButtonGroup } from "@material-ui/core/"
+import { Button, ButtonGroup, TextField } from "@material-ui/core/"
 import { CustomizedTimeline } from './components/timeline'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -58,6 +58,7 @@ function App() {
     <div className="App">
 
       <ButtonAppBar />
+		  <TextField id="standard-basic" label="Employee ID" />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={6} className={classes.table}>
           <BasicTable data={data} />
