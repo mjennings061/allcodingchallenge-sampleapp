@@ -1,4 +1,5 @@
 from database_helper import Database
+from decimal import Decimal
 
 
 class StatsHelper():
@@ -30,7 +31,29 @@ class StatsHelper():
         )      
         return result
 
+    # return the median sleep, exercise and work times for all employees
+    def median_survey(self):
+        columns = ["exercise_time", "social_interaction_time", "work_time", "sleep_time"]
+        medians = {}
+        for col in columns:
+            self.database.fetch_all("SET @rowindex_ex := -1")
+            med = self.database.fetch_all(f"""    
+                                        SELECT
+                                        CAST(AVG(g.{col}) AS DOUBLE)
+                                        FROM
+                                        (SELECT @rowindex_ex:=@rowindex_ex + 1 AS rowindex_ex,
+                                                dayroutine.{col} AS {col}
+                                            FROM dayroutine
+                                            ORDER BY dayroutine.{col}) AS g
+                                        WHERE
+                                        g.rowindex_ex IN (FLOOR(@rowindex_ex / 2) , CEIL(@rowindex_ex / 2))
+                                    """
+            )
+            median = med[0][f"CAST(AVG(g.{col}) AS DOUBLE)"]
+            medians.update(
+                {
+                    col: median,
+                }  
+            )
+        return medians
 
-    # return the mean stats for the selected employee
-    def mean_stats(self, employee_id):
-        return None
