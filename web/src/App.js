@@ -103,22 +103,6 @@ function App() {
     </Grid>
           <Grid item xs={16} sm={4}>
             <Typography variant="h4">
-              Work Life Balance for Month
-      </Typography>
-            <PieChart
-              data={[
-                { title: 'Work Time', value: 12239, color: '#DC143C' },
-                { title: 'Exercise Time', value: 2738.5, color: '#8884d8' },
-                { title: 'Sleep Time', value: 12580.75, color: '#82ca9d' },
-                { title: 'Social Time', value: 921, color: '#3f51b5' },
-              ]}
-              viewBoxSize={[100, 100]}
-              paddingAngle={[5]}
-              radius={[40]}
-            />;
-    </Grid>
-          <Grid item xs={16} sm={4}>
-            <Typography variant="h4">
               Work Life Balance for 6299
       </Typography>
             <PieChart
@@ -127,6 +111,22 @@ function App() {
                 { title: 'Exercise Time', value: 3180, color: '#8884d8' },
                 { title: 'Sleep Time', value: 12434, color: '#82ca9d' },
                 { title: 'Social Time', value: 895, color: '#3f51b5' },
+              ]}
+              viewBoxSize={[100, 100]}
+              paddingAngle={[5]}
+              radius={[40]}
+            />;
+    </Grid>
+          <Grid item xs={16} sm={4}>
+            <Typography variant="h4">
+              Work Life Balance Target
+      </Typography>
+            <PieChart
+              data={[
+                { title: 'Work Time', value: 40, color: '#DC143C' },
+                { title: 'Exercise Time', value: 22, color: '#8884d8' },
+                { title: 'Sleep Time', value: 45, color: '#82ca9d' },
+                { title: 'Social Time', value: 22, color: '#3f51b5' },
               ]}
               viewBoxSize={[100, 100]}
               paddingAngle={[5]}
