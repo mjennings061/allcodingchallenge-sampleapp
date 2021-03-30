@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, { useState, useEffect } from 'react';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label } from 'recharts';
 import Typography from '@material-ui/core/Typography';
-const data = [
+import axios from 'axios';
+/*const data = [
   {
     name: 'Page A',
     sleep: 4000,
@@ -44,28 +45,44 @@ const data = [
     exercise: 4300,
     amt: 2100,
   },
-];
+];*/
 
-export const Example = () => {
-    return (
-        <BarChart
-          width={800}
-          height={300}
-          data={data}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 0,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="exercise" stackId="a" fill="#8884d8" />
-          <Bar dataKey="sleep" stackId="a" fill="#82ca9d" />
-        </BarChart>
-    );
+export const Example = (data) => {
+  // break up data into a list of objects
+  const formattedData = [{
+    name: "Execise Time",
+    time: Math.floor(data["exercise_time"] / 60)
+  }, {
+    name: "Social Interaction Time",
+    time: Math.floor(data["social_interaction_time"] / 60)
+  }, {
+    name: "Work Time",
+    time: Math.floor(data["work_time"] / 60)
+  }, {
+    name: "Sleep Time",
+    time: Math.floor(data["sleep_time"] / 60)
+  }]
+  console.log(formattedData)
+
+  return (
+    <BarChart
+      width={800}
+      height={300}
+      data={formattedData}
+      margin={{
+        top: 20,
+        right: 30,
+        left: 20,
+        bottom: 0,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name">
+        <Label value="Activity" offset={-2} position="insideBottom" />
+      </XAxis>
+      <YAxis label={{ value: 'Time (Hours)', angle: -90, position: 'insideLeft' }}/>
+      <Tooltip />
+      <Bar dataKey="time" fill="#8884d8"/>
+    </BarChart>
+  );
 }
