@@ -24,6 +24,11 @@ def alldata():
     return json.dumps(stats_helper.join_all())
 
 
+@app.route('/per_employee/<id>')
+def per_employee(id):
+    return json.dumps(stats_helper.per_employee(id))
+
+
 print("### Application started...")
 
 
